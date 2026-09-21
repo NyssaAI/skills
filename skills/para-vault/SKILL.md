@@ -2,7 +2,7 @@
 name: para-vault
 description: "Manage a PARA knowledge vault: classify notes, enforce folder depth and naming, track document maturity and authority, maintain indexes, and archive safely."
 metadata:
-  version: "0.9.2"
+  version: "0.9.4"
 ---
 
 # PARA Vault Knowledge System
@@ -18,13 +18,21 @@ For decisions that depend on vault conventions, first check a rules path or conf
 ```text
 .temp/                         # temporary working files only; nested folders allowed
 0-inbox/                       (raw captures; processed originals go in 0-inbox/archive/)
-1-projects/{project}/          (active work; one optional subfolder level)
+1-projects/{project}/          (active work; root notes and purposeful working folders)
 2-areas/{area}/                (ongoing interests; email/calendar date-folder exceptions)
 3-resources/{resource-type}/   (reference material; use the approved types below)
 4-archives/                    (done, stale, superseded, or abandoned)
 ```
 
 The vault root is closed by default. The only permitted top-level directories are `.temp/`, `0-inbox/`, `1-projects/`, `2-areas/`, `3-resources/`, and `4-archives/`. Dot-folders other than `.temp/` (such as `.obsidian/`, `.git/`, `.stfolder/`, `.trash/`) are external system/tool directories and must be ignored entirely—do not scan, index, reorganize, or alter them. Root ignore and configuration files (`.gitignore`, `.gitattributes`, `.stignore`) are permitted root exceptions. By default, if a `.gitignore` exists at the root of the vault, it should ignore dot-folders. Do not create loose root notes or any other top-level directory, including convenience folders for scripts, exports, attachments, backups, or new PARA categories, unless the user explicitly authorizes it. Preserve existing root entries; this rule does not authorize deleting or migrating them. Use `.temp/` for temporary and generated working files, then clean them up when the operation is complete.
+
+### Projects
+
+**Keep Markdown notes at the project root unless they directly support a working collection.** Project-wide planning, strategy, decisions, and coordination belong at the root, alongside the single project index. A transcript, document register, or analysis of evidence may live with the specific working material it supports. File purpose determines placement; a change of file format alone does not justify moving a document.
+
+**Keep non-note files out of the project root by default.** File documents, spreadsheets, images, exports, and other working artifacts in purpose-specific subdirectories. Prefer names that explain their role, such as `pleadings/` or `evidence/`, over a generic attachment dump. Judge whether an item is a note or a working artifact by its role, not only its extension. Retain a non-note file at the root when a tool or project format requires that location; preserve that dependency rather than moving the file for tidiness.
+
+Use subdirectories for concrete workflows or coherent document collections, such as discovery requests and responses in a lawsuit. Prefer shallow structures, adding levels only when they improve the work; projects have no fixed maximum depth. Working folders may contain Markdown and non-Markdown files. Preserve useful existing structures; never flatten or ZIP a project collection solely to satisfy a depth preference. See [project working collections](references/para-rules.md#project-working-collections) for an example and navigation guidance.
 
 ### Areas
 
@@ -62,7 +70,7 @@ Resources are reusable reference collections rather than active work. The standa
 
 Keep resource types broad and stable; do not create a folder for every topic. New resource types require explicit authorization.
 
-Keep the normal maximum depth at four levels: vault > PARA category > folder > note. Projects may use one additional subfolder level when necessary, for a maximum of five levels, but nesting is discouraged. Email day folders and calendar week-ending folders also permit five levels. All other areas remain flat. Archived project bundles retain their permitted project depth. Nested temporary working folders under `.temp/` are exempt.
+Outside projects, keep the normal maximum depth at four levels: vault > PARA category > folder > note. Email day folders and calendar week-ending folders permit five levels. All other areas remain flat. Projects follow the working-folder guidance above; archived project bundles retain their complete internal structure. Nested temporary working folders under `.temp/` are exempt.
 
 ## Maps of Content: guides to related notes
 
@@ -71,9 +79,9 @@ A **Map of Content (MOC)** is a Markdown note that helps you understand and navi
 - **Main map (L0, or level zero):** each area has one, named `00-area-slug-index.md`. It introduces the whole area and provides access to its notes, directly or through subtopic maps. Its permanent filename has no date prefix.
 - **Subtopic map (L1, or level one):** an optional note named `01-subtopic-slug-index.md`, created when the user requests it or it materially improves navigation through a coherent subtopic. Around 15 related notes is a useful signal, not a minimum. The main map links to it. Both map files remain at the area root, including in email and calendar areas. Subtopic index filenames also have no date prefix.
 - **No level-two maps (L2):** do not create maps beneath subtopic maps. Reconsider the topic boundaries if another level seems necessary.
-- **Project index:** `YYYY.MM.DD-project-slug-index.md` serves the same guiding role for a project, alongside its goal and deadline. Do not create a separate main MOC for that project.
+- **Project index:** `YYYY.MM.DD-project-slug-index.md` stays at the project root, alongside its goal and deadline. It guides users to key notes and working collections without needing to list every file. Do not create a separate main MOC for that project; local working-folder registers are supporting notes, not additional project indexes.
 
-Start a map with a short explanation of the subject and current understanding, followed by sections of links with brief descriptions, open questions, and links to related areas. For example, `2-areas/bookkeeping/00-bookkeeping-index.md` explains bookkeeping practices and links to procedures and monthly reconciliation projects. Keep the map current as notes are added or changed. The `00-` prefix identifies the main map and `01-` identifies a subtopic map. All subtopic maps share `01-`; these prefixes indicate map level, not a running sequence. Links express the relationships; no additional folders are needed. Email/calendar records and their day/week folders use dates instead of map-level prefixes.
+Start a map with a short explanation of the subject and current understanding, followed by sections of links with brief descriptions, open questions, and links to related areas. For example, `2-areas/bookkeeping/00-bookkeeping-index.md` explains bookkeeping practices and links to procedures and monthly reconciliation projects. Keep the map current as notes are added or changed. The `00-` prefix identifies the main map and `01-` identifies a subtopic map. All subtopic maps share `01-`; these prefixes indicate map level, not a running sequence. Area maps express relationships without additional topic folders; this does not restrict project working folders. Email/calendar records and their day/week folders use dates instead of map-level prefixes.
 
 ## Operating rules
 
@@ -81,7 +89,7 @@ Start a map with a short explanation of the subject and current understanding, f
 - Route source email and calendar records to their area date folders and link them from relevant projects. If required source dates cannot be resolved, preserve the record in the inbox until resolved; follow the source-record workflow. For other inbox notes, read intent fields, apply the cascade in filing-logic.md, and inspect nearby notes or semantic-search results when ambiguity exists.
 - Direct project work must still follow the naming and frontmatter rules and must update the project's index file when it adds meaningful work or context.
 - Every maintained Markdown note has YAML frontmatter with `type`, `created`, and `status`. Preserve native record formats such as `.ics`; do not insert YAML into them. Tags are optional; omit `tags` or use `tags: []` when no useful classification applies. Disposable tool output under `.temp/` and unchanged preserved originals are exempt from note schemas; retained notes are not.
-- Use lowercase kebab-case slugs for filenames and folder names, with the documented date formats and `.temp/` exception. Use `YYYY.MM.DD-record-slug` plus the appropriate extension when a date identifies the work or record; use `descriptive-slug.md` for enduring undated content. Use the index names specified above. Project folders remain `YYYY.MM.DD-project-slug`, matching their index prefix. Use the date meanings in the schemas; do not change date prefixes merely because a document is edited. Attachments use simple descriptive names and stay beside their owning document; follow the [attachment rules](references/para-rules.md#attachments).
+- Use lowercase kebab-case slugs for filenames and folder names, with the documented date formats and `.temp/` exception. Use `YYYY.MM.DD-record-slug` plus the appropriate extension when a date identifies the work or record; use `descriptive-slug.md` for enduring undated content. Use the index names specified above. Project folders remain `YYYY.MM.DD-project-slug`, matching their index prefix. Use the date meanings in the schemas; do not change date prefixes merely because a document is edited. Attachments use simple descriptive names and stay with their owning document or project working collection; follow the [attachment rules](references/para-rules.md#attachments).
 - Use `status` for maturity: `raw`, `draft`, `reviewed`, or `established`. Use the separate boolean `canonical: true` only for a designated source of truth; authority does not imply maturity. For competing canonical documents serving the same purpose, the most recent canonical designation wins; exclude historical copies and use the schemas' recency and tie rules.
 - Add tags only when they improve retrieval, using the closed vocabulary and preservation rules in [the schemas](references/frontmatter-schemas.md#field-meanings).
 - Protect documents with `status: established`: minor wording or formatting corrections may retain that status; propose substantive revisions separately and preserve the accepted version until the user approves the revision. An explicit instruction approving a specific revision counts as approval. Keep its maturity accurate after revision; do not automatically promote a draft. Preserve useful content and evidence in canonical documents; propose a replacement if their purpose changes rather than silently repurposing the source of truth.
