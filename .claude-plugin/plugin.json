@@ -1,0 +1,17 @@
+{
+  "name": "skills",
+  "version": "1.0.0",
+  "description": "Official agent skills catalog for NyssaAI",
+  "author": {
+    "name": "NyssaAI"
+  },
+  "repository": "https://github.com/NyssaAI/skills",
+  "license": "MIT",
+  "keywords": [
+    "nyssa",
+    "agent",
+    "skills",
+    "workflows",
+    "tools"
+  ]
+}
