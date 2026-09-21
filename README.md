@@ -1,30 +1,51 @@
 # NyssaAI — Agent Skills Catalog
 
-The central public repository for AI agent skills across the NyssaAI ecosystem. Compatible with Claude Code and Antigravity.
+The central public repository for AI agent skills across the NyssaAI ecosystem. Built with a universal layout compatible with **Google Antigravity (AGY)**, **Claude Code**, **OpenAI Codex**, **OpenClaw**, and **Hermes Agent**.
 
 ---
 
-## Installation
+## Installation & Usage
 
-### Via NyssaAI Curated Marketplace (Recommended)
+### 1. Claude Code
 
-1. Register the NyssaAI marketplace:
-   ```bash
-   /plugin marketplace add github.com/NyssaAI/plugin-marketplace
-   ```
+#### Via NyssaAI Curated Marketplace (Recommended)
+```bash
+/plugin marketplace add github.com/NyssaAI/plugin-marketplace
+/plugin install skills@nyssaai
+```
 
-2. Install the skills package:
-   ```bash
-   /plugin install skills@nyssaai
-   ```
-
-### Direct Installation
-
-You can also install this repository directly:
-
+#### Direct Repository Add
 ```bash
 /plugin add github.com/NyssaAI/skills
 ```
+
+### 2. OpenAI Codex
+
+Add to your `.codex` configuration or clone into your skills directory:
+```bash
+git clone https://github.com/NyssaAI/skills.git
+```
+Codex discovers skills via `.codex-plugin/plugin.json` and `skills/`.
+
+### 3. Google Antigravity (AGY)
+
+Include as a workspace customization in `.agents/` or install globally via `~/.gemini/config/plugins/`. Discovered automatically via `gemini-extension.json` and `.agents/plugins.json`.
+
+### 4. OpenClaw & Hermes Agent
+
+Both runtimes natively read the AgentSkills.io standard directory:
+```bash
+git clone https://github.com/NyssaAI/skills.git
+```
+Point your agent runtime or extra skills directory to `./skills/`.
+
+---
+
+## Skills Catalog
+
+| Skill | Description | Supported Agents |
+| :--- | :--- | :--- |
+| [**`para-vault`**](skills/para-vault/) | Manage a PARA knowledge vault: classify notes, enforce folder depth and naming, track document maturity and authority, maintain indexes, and archive safely. | AGY, Claude, Codex, OpenClaw, Hermes |
 
 ---
 
@@ -32,27 +53,32 @@ You can also install this repository directly:
 
 ```
 .
+├── .agents/
+│   └── plugins.json                   # Antigravity skill declarations
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
-├── skills/                  # Individual skill definitions
-│   └── <skill-name>/
-│       ├── SKILL.md         # Skill instructions & metadata
-│       └── ...
-├── LICENSE                  # MIT License
+│   └── plugin.json                    # Claude Code plugin manifest
+├── .codex-plugin/
+│   └── plugin.json                    # Codex plugin manifest
+├── gemini-extension.json              # Antigravity extension metadata
+├── AGENTS.md                          # Universal agent instruction anchor
+├── CLAUDE.md                          # Claude Code reference
+├── GEMINI.md                          # Antigravity reference
+├── skills/                            # Canonical skills directory
+│   └── para-vault/                    # PARA Knowledge System skill
+│       ├── SKILL.md                   # Core skill workflow & frontmatter
+│       ├── agents/
+│       │   └── openai.yaml            # Codex UI metadata
+│       └── references/                # Progressive disclosure references
+│           ├── filing-logic.md
+│           ├── frontmatter-schemas.md
+│           └── para-rules.md
+├── LICENSE                            # MIT License
 └── README.md
 ```
 
 ---
 
-## Skills Catalog
-
-| Skill | Description | Status |
-| :--- | :--- | :--- |
-| *(Catalog growing)* | See [skills/](skills/) for upcoming workflow skills. | In development |
-
----
-
-## Creating a New Skill
+## Adding a New Skill
 
 1. Create a new directory under `skills/<skill-name>/`.
 2. Add a `SKILL.md` with standard frontmatter:
@@ -68,8 +94,8 @@ You can also install this repository directly:
    ## Workflow
    Step-by-step guidance.
    ```
-3. Test the skill locally with your agent.
-4. Submit a pull request.
+3. If the skill has complex rules or schemas, put them into `references/` and link to them using relative paths.
+4. Optional: add `agents/openai.yaml` if you want custom prompt starters or titles in OpenAI Codex UI.
 
 ---
 

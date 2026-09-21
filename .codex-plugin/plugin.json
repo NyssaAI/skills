@@ -1,0 +1,36 @@
+{
+  "name": "skills",
+  "version": "1.0.0",
+  "description": "Official agent skills catalog for NyssaAI",
+  "author": {
+    "name": "NyssaAI"
+  },
+  "homepage": "https://github.com/NyssaAI/skills",
+  "repository": "https://github.com/NyssaAI/skills",
+  "license": "MIT",
+  "keywords": [
+    "nyssa",
+    "skills",
+    "agent",
+    "para-vault",
+    "workflows"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "NyssaAI Skills",
+    "shortDescription": "Official agent skills catalog for NyssaAI",
+    "longDescription": "Curated, multi-agent skills for NyssaAI workflows, knowledge management, and development standards.",
+    "developerName": "NyssaAI",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/NyssaAI/skills",
+    "defaultPrompt": [
+      "Organize my PARA vault",
+      "File these notes into PARA"
+    ]
+  }
+}
