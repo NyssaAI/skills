@@ -1,8 +1,8 @@
 # Frontmatter Schemas
 
-All maintained Markdown notes require `type`, `created`, and `status`. Frontmatter dates use ISO `YYYY-MM-DD`; filename date prefixes, where applicable, use `YYYY.MM.DD`. Undated filenames still retain `created` in frontmatter. Tags are optional YAML lists without `#`; omit the field or use `tags: []` when none are useful. Preserve native records such as `.ics` invitations in their native format without inserting YAML.
+All maintained Markdown notes require `type`, `created`, and `status`, including supporting notes and registers inside project working folders. Frontmatter dates use ISO `YYYY-MM-DD`; filename date prefixes, where applicable, use `YYYY.MM.DD`. Undated filenames still retain `created` in frontmatter. Tags are optional YAML lists without `#`; omit the field or use `tags: []` when none are useful. Preserve native records such as `.ics` invitations in their native format without inserting YAML.
 
-Disposable tool output in `.temp/` and unchanged preserved originals are exempt. Do not retrofit metadata into preserved evidence.
+Disposable tool output in `.temp/` and unchanged preserved originals are exempt, including imported Markdown retained as original evidence inside a working collection. Do not retrofit metadata into preserved evidence. File extension or subdirectory placement alone does not establish this exemption.
 
 ## Field meanings
 
@@ -95,7 +95,7 @@ tags: []
 
 ## Project index
 
-Name the index `YYYY.MM.DD-project-slug-index.md` inside its matching `YYYY.MM.DD-project-slug/` folder.
+Name the index `YYYY.MM.DD-project-slug-index.md` at the root of its matching `YYYY.MM.DD-project-slug/` folder. Supporting working-folder registers use the note schema; they do not create separate project identities.
 
 ```yaml
 ---

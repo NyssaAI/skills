@@ -8,7 +8,7 @@ Apply source-record routing first, then evaluate the cascade in order. If owners
 
 Route email and calendar source records to their area date folders as defined in [SKILL.md](../SKILL.md#areas), using the date meanings in [frontmatter-schemas.md](frontmatter-schemas.md#date-meanings-and-configuration). Link these records from related projects rather than relocating them. When required filing information is missing, hold the record in the inbox; follow [source-record handling](para-rules.md#collisions-and-source-records) before assigning a folder. Apply the cascade below to other notes, including analysis or work derived from those records.
 
-1. **Project** — the note directly advances an active project with a stated goal and deadline. File under `1-projects/YYYY.MM.DD-project-slug/`.
+1. **Project** — the note directly advances an active project with a stated goal and deadline. File under `1-projects/YYYY.MM.DD-project-slug/`. Keep Markdown notes at the project root unless they directly support a working collection, and put non-note files in purpose-specific subdirectories by default; see [project working collections](para-rules.md#project-working-collections). Working folders do not override the email/calendar source-record routing above.
 2. **Area** — the note belongs to an ongoing responsibility or interest with no end date. File under `2-areas/{area}/`.
 3. **Resource** — the note is reference material rather than work or an ongoing commitment. File under `3-resources/{resource-type}/`.
 4. **Archive/delete** — its lack of a useful current role is established. Prefer `4-archives/`, subject to the archive exclusions in [para-rules.md](para-rules.md#archive-workflow); delete only when explicitly authorized.

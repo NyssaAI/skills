@@ -10,7 +10,32 @@ Use note-name wikilinks only when unambiguous. Otherwise use vault-relative wiki
 
 ## Attachments
 
-Store attachments alongside their owning document, including inside email day folders or calendar week folders; do not create attachment subfolders. Use a simple descriptive kebab-case document name with its original extension, such as `bank-statement.pdf`, without requiring a date prefix. Link from the owning Markdown document with `[[bank-statement.pdf]]`; qualify the wikilink with the vault-relative path when the name is ambiguous. For a native owner that cannot contain wikilinks without changing its format, place the attachment link in its existing index annotation or companion Markdown capture. Preserve native attachment contents and apply the collision and source-identity rules below. When moving or archiving an owner, preserve access to its attachments and repair affected links; do not remove an attachment still used by another document.
+Inside a project, store attachments and other non-note working files in purpose-specific subdirectories by default. Keep related documents and attachments together within their working collection. A project-root note links into that collection; it does not require its attachments to sit at the root. Outside projects, keep attachments beside their owners, including inside email day folders or calendar week folders, without additional attachment subfolders. Use a simple descriptive kebab-case document name with its original extension, such as `bank-statement.pdf`, without requiring a date prefix. Link from the owning Markdown document with `[[bank-statement.pdf]]`; qualify the wikilink with the vault-relative path when the name is ambiguous. For a native owner that cannot contain wikilinks without changing its format, place the attachment link in its existing index annotation or companion Markdown capture. Preserve native attachment contents and apply the collision and source-identity rules below. When moving or archiving an owner, preserve access to its attachments and repair affected links; do not remove an attachment still used by another document.
+
+## Project working collections
+
+Keep project-wide Markdown notes at the root. Put a Markdown note in a subdirectory only when it directly supports that working collection, such as a discovery register or analysis of an agreement. Put non-note files in purpose-specific subdirectories by default, even when referenced by a root note. A root-required configuration file or other tool-dependent artifact may stay where its consumer requires it. Do not create a generic nested `notes/` tree or separate related documents solely by file extension.
+
+For example:
+
+```text
+1-projects/2026.09.21-lawsuit/
+  2026.09.21-lawsuit-index.md
+  strategy.md
+  chronology.md
+  discovery/
+    document-register.md
+    requests/
+      first-request.pdf
+    responses/
+      first-response.pdf
+  evidence/
+    employment/
+      agreement.pdf
+      agreement-analysis.md
+```
+
+This is an illustration, not a required folder template. Create only folders the actual work needs. Keep the main project index useful by linking to key documents, working folders, or their registers with brief descriptions. A local register may guide a large collection, but is not required for every folder; use `type: note` for a maintained register. The project index need not duplicate its file listing. Preserve complete source packages and their useful internal relationships when filing or archiving.
 
 ## Collisions and source records
 
@@ -60,7 +85,7 @@ Minor corrections and routine index maintenance can be applied directly when the
 
 ## Archive workflow
 
-Do not automatically archive area MOCs, active area notes, or resource documents. Saving a prior-version snapshot during an approved revision preserves evidence; it does not move the current resource document. Archiving these requires a specific user instruction. A completed, abandoned, or superseded project can be archived as an intact folder, including its project index, after its lifecycle outcome is known. Keep project child structure and its permitted depth; do not scatter its notes or create additional archive category/year folders.
+Do not automatically archive area MOCs, active area notes, or resource documents. Saving a prior-version snapshot during an approved revision preserves evidence; it does not move the current resource document. Archiving these requires a specific user instruction. A completed, abandoned, or superseded project can be archived as an intact folder, including its project index, after its lifecycle outcome is known. Preserve its complete working-folder structure, including nested Markdown, native documents, and attachments; do not flatten or ZIP the bundle to meet a depth preference. Do not scatter its notes or create additional archive category/year folders.
 
 - Individual items go directly under `4-archives/` with their existing filenames, disambiguated on collision.
 - Project bundles go to `4-archives/<existing-project-folder>/`. If that folder name collides, stop to distinguish the same project from a different bundle rather than merging or silently renaming it. Add archive fields to the project index; those fields describe the bundle, including native children.
