@@ -24,7 +24,7 @@ For decisions that depend on vault conventions, first check a rules path or conf
 4-archives/                    (done, stale, superseded, or abandoned)
 ```
 
-The vault root is closed by default. The only permitted top-level directories are `.temp/`, `0-inbox/`, `1-projects/`, `2-areas/`, `3-resources/`, and `4-archives/`. Do not create loose root files or any other top-level directory, including convenience folders for scripts, exports, attachments, backups, or new PARA categories, unless the user explicitly authorizes it. Preserve existing root entries; this rule does not authorize deleting or migrating them. Use `.temp/` for temporary and generated working files, then clean them up when the operation is complete.
+The vault root is closed by default. The only permitted top-level directories are `.temp/`, `0-inbox/`, `1-projects/`, `2-areas/`, `3-resources/`, and `4-archives/`. Dot-folders other than `.temp/` (such as `.obsidian/`, `.git/`, `.stfolder/`, `.trash/`) are external system/tool directories and must be ignored entirely—do not scan, index, reorganize, or alter them. Root ignore and configuration files (`.gitignore`, `.gitattributes`, `.stignore`) are permitted root exceptions. By default, if a `.gitignore` exists at the root of the vault, it should ignore dot-folders. Do not create loose root notes or any other top-level directory, including convenience folders for scripts, exports, attachments, backups, or new PARA categories, unless the user explicitly authorizes it. Preserve existing root entries; this rule does not authorize deleting or migrating them. Use `.temp/` for temporary and generated working files, then clean them up when the operation is complete.
 
 ### Areas
 

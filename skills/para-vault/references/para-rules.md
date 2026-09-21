@@ -77,3 +77,9 @@ Check backlinks and living parent documents before moving. A content-preserving 
 Use task-scoped paths such as `.temp/reconciliation-check/check-balances.py` and `.temp/reconciliation-check/balance-check-results.csv`. Nested temporary folders are allowed. Scripts and disposable output, including Markdown output, need no note frontmatter or index entries. Do not put scripts, exports, or backup folders at the vault root.
 
 If output becomes a retained deliverable, file it in its known project/area/resource destination, add metadata if it is a maintained Markdown note, and update the applicable index. Verify the retained copy before cleanup. Remove only the current operation's disposable temporary artifacts when finished, not unrelated `.temp/` contents.
+
+## Dot-folders and ignore rules
+
+- **Dot-folders ignored entirely**: Any dot-folder other than `.temp/` (such as `.obsidian/`, `.git/`, `.stfolder/`, `.trash/`) is an external tool, sync daemon, or version control directory. The agent must ignore them entirely: never scan them for notes, never index them, never move or file content into them, and never delete or alter them.
+- **Root ignore files permitted**: Configuration and ignore files (`.gitignore`, `.gitattributes`, `.stignore`) at the root of the vault are permitted exceptions to the closed-root rule.
+- **Default .gitignore behavior**: By default, if a `.gitignore` exists at the root of the vault, it should ignore dot-folders (e.g., `.*/` or specifically dot-directories such as `.temp/`, `.obsidian/`, `.stfolder/`) so that internal workspace caches, temporary operational files, and sync metadata are not tracked in version control.
