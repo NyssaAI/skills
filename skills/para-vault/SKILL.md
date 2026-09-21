@@ -2,7 +2,7 @@
 name: para-vault
 description: "Manage a PARA knowledge vault: classify notes, enforce folder depth and naming, track document maturity and authority, maintain indexes, and archive safely."
 metadata:
-  version: "0.9.1"
+  version: "0.9.2"
 ---
 
 # PARA Vault Knowledge System
